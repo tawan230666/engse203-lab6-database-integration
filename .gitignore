@@ -1,0 +1,24 @@
+﻿# Node dependencies
+node_modules/
+npm-debug.log*
+yarn.lock
+package-lock.json
+
+# Environment & secrets
+.env
+.env.*
+.DS_Store
+
+# Logs
+logs/
+*.log
+*.gz
+
+# Build outputs (ถ้ามี)
+dist/
+build/
+
+# System/IDE
+Thumbs.db
+.idea/
+.vscode/

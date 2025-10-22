@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "Agent Wallboard API (Phase 2)",
+    "_postman_id": "b4b1a7d0-0c5c-4c0c-9b5f-20251022021636",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Agents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/agents",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "agents"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Agent by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/api/agents/{{agentId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "agents",
+            "{{agentId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Agent Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"status\": \"Available\", \"reason\": \"Ready for calls\"}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/api/agents/{{agentId}}/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "api",
+            "agents",
+            "{{agentId}}",
+            "status"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "health"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "agentId",
+      "value": "A001"
+    }
+  ]
+}
