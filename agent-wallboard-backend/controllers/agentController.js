@@ -1,4 +1,5 @@
 const agentService = require('../services/agentService');
+const { broadcast } = require('../utils/events');
 
 const agentController = {
   async getAllAgents(req, res, next) {
@@ -21,6 +22,7 @@ const agentController = {
       const { agentId } = req.params;
       const { name } = req.body;
       const agent = await agentService.login(agentId, name || agentId);
+      broadcast(req, 'agent:updated', agent);
       res.status(201).json({ success: true, message: 'Login success', data: agent });
     } catch (err) { next(err); }
   },
@@ -30,6 +32,7 @@ const agentController = {
       const { agentId } = req.params;
       const agent = await agentService.logout(agentId);
       if (!agent) return res.status(404).json({ success: false, error: 'Agent not found' });
+      broadcast(req, 'agent:updated', agent);
       res.json({ success: true, message: 'Logout success', data: agent });
     } catch (err) { next(err); }
   },
@@ -41,6 +44,7 @@ const agentController = {
       if (!status) return res.status(400).json({ success: false, error: 'Status is required' });
       const updated = await agentService.updateStatus(agentId, status);
       if (!updated) return res.status(404).json({ success: false, error: 'Agent not found' });
+      broadcast(req, 'agent:updated', updated);
       res.json({ success: true, message: 'Status updated successfully', data: updated });
     } catch (err) { next(err); }
   }
