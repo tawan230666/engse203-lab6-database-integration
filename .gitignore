@@ -22,3 +22,5 @@ build/
 Thumbs.db
 .idea/
 .vscode/
+!.env.example
+*Zone.Identifier
